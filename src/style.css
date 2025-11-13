@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(270deg, #0f172a, #1e3a8a, #0f172a);
+  background-size: 400% 400%;
+  animation: gradientFlow 12s ease infinite;
+  cursor: none; /* 隱藏預設游標 */
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 背景畫布與光點 */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* 計算機主體 */
+.hud-calculator {
+  position: relative;
+  z-index: 10;
+  width: 300px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+  backdrop-filter: blur(15px);
+  padding: 20px;
+}
+
+.screen input {
+  width: 100%;
+  height: 60px;
+  font-size: 24px;
+  text-align: right;
+  border: none;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #00ffff;
+  box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.4);
+  margin-bottom: 15px;
+  padding: 10px;
+}
+
+.keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+button {
+  height: 60px;
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  background: rgba(0, 255, 255, 0.15);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+
+button:hover {
+  background: rgba(0, 255, 255, 0.3);
+  box-shadow: 0 0 20px #00ffff;
+}
+
+button:active {
+  transform: scale(0.9);
+}
+
+button.op {
+  color: #38bdf8;
+}
+
+button.equal {
+  background: linear-gradient(135deg, #00ffff, #3b82f6);
+  color: #000;
+  font-weight: bold;
+}
+
+button.clear {
+  grid-column: span 4;
+  background: rgba(239, 68, 68, 0.25);
+  color: #fca5a5;
+}
+
+/* 自訂發光游標 */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, #00ffff, transparent 70%);
+  box-shadow: 0 0 30px #00ffff;
+  z-index: 999;
+  mix-blend-mode: screen;
+}
+
+@media (max-width: 480px) {
+  .hud-calculator {
+    width: 90%;
+  }
+}
